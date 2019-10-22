@@ -37,7 +37,8 @@ namespace larcv3 {
     // Process a batch of entries, using _next_index_v to specify entries
     bool batch_process();
 
-
+    // Calls batch process but spawns an OMP task, returns immediately control to python
+    void prepare_next();
 
     // Reset the state
     void reset();

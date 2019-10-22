@@ -297,7 +297,26 @@ int omp_thread_count() {
     _configured = true;
   }
 
+  void QueueProcessor::prepare_next() {
+    if (_processing){
+      LARCV_ERROR() << "Called prepare_next but already processing - returning with no action!" << std::endl;
+      return;
+    }
+    else{
+
+      // If no omp available, this will just be ignored.
+      #pragma omp single nowait 
+      {
+        #pragma omp task
+        batch_process();
+      }
+
+    }
+
+    return;
+  }
   
+
   bool QueueProcessor::batch_process() {
 
     LARCV_DEBUG() << " start" << std::endl;

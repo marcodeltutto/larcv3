@@ -207,7 +207,7 @@ class queue_interface(object):
             set_entries = self.get_next_batch_indexes(mode, self._minibatch_size[mode])
 
         self._queueloaders[mode].set_next_batch(set_entries)
-        self._queueloaders[mode].batch_process()
+        self._queueloaders[mode].prepare_next()
 
         self._count[mode] = 0
 
@@ -377,6 +377,8 @@ class larcv_queueio (object):
             time.sleep(0.01)
         self._proc.batch_process()
 
+    def prepare_next(self):
+        self._proc.prepare_next()
 
     def is_reading(self,storage_id=None):
         return self._proc.is_reading()
