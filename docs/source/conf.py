@@ -25,6 +25,9 @@ author = 'Corey Adams, Marco Del Tutto'
 release = '3.2.0'
 
 
+# Required with sphinx < 2
+master_doc = 'index'
+
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
